@@ -1,8 +1,15 @@
-# Description
-Detailed description of user story goes here.
+# User story
+**As a** [description of user]
+
+**I want** [functionality]
+
+**so that** [benefit]
+
 
 # Time estimate
-Estimated duration of user story goes here.
+[number] **days**
+
+[number] **hours**
 
 # Acceptance criteria
 - [ ] Criterium #1
