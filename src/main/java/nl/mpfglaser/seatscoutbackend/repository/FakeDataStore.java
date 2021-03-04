@@ -98,22 +98,26 @@ public class FakeDataStore {
         return null;
     }
 
-    public boolean addVehicle (Vehicle vehicle){
-        if(vehicle == null){
-            return false;
-        }
-        vehicleList.add(vehicle);
-        return true;
+    public List<Vehicle> getAllVehicles(){
+        return vehicleList;
     }
 
-    public boolean updateVehicle(Vehicle vehicle){
+    public Vehicle addVehicle (Vehicle vehicle){
+        if(vehicle == null){
+            return null;
+        }
+        vehicleList.add(vehicle);
+        return vehicle;
+    }
+
+    public Vehicle updateVehicle(Vehicle vehicle){
         Vehicle old = this.getVehicle(vehicle.getTypeName());
         if (old == null){
-            return false;
+            return null;
         }
         old.setTypeName(vehicle.getTypeName());
         old.setCapacity(vehicle.getCapacity());
-        return true;
+        return vehicle;
     }
 
     public boolean deleteVehicle(String name){
