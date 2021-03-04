@@ -16,4 +16,14 @@ public class Vehicle {
     public int getCapacity() {
         return this.capacity;
     }
+
+    public void setTypeName(String name){
+        if(!name.isBlank()){
+            this.typeName = name;
+        }
+    }
+
+    public void setCapacity(int capacity){
+        this.capacity = capacity;
+    }
 }
