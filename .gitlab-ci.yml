@@ -6,6 +6,10 @@ build:
   stage: build
   script: ./gradlew assemble
 
+quality:
+  stage: quality
+  script: ./gradlew sonarqube -Dsonar.projectKey=%sonar_key% -Dsonar.host.url=%sonar_host% -Dsonar.login=%sonar_login%
+
 test:
   stage: test
   script: ./gradlew test
