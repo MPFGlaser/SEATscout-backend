@@ -14,7 +14,7 @@ build:
 
 code_quality:
   stage: code_quality
-  script: ./gradlew sonarqube -Dsonar.projectKey=%sonar_key% -Dsonar.host.url=%sonar_host% -Dsonar.login=%sonar_login%
+  script: ./gradlew sonarqube -Dsonar.projectKey=$SONAR_KEY -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN
 
 test:
   stage: test
