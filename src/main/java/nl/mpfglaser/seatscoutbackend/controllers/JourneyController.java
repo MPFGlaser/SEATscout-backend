@@ -1,7 +1,7 @@
 package nl.mpfglaser.seatscoutbackend.controllers;
 
 import nl.mpfglaser.seatscoutbackend.model.Journey;
-import nl.mpfglaser.seatscoutbackend.repository.FakeDataStore;
+import nl.mpfglaser.seatscoutbackend.service.JourneyService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,15 +9,15 @@ import java.util.List;
 @CrossOrigin()
 @RestController
 public class JourneyController {
-    FakeDataStore fakeDataStore = new FakeDataStore();
+    JourneyService journeyService = new JourneyService();
 
     @GetMapping("/journeys")
     public List<Journey> all(){
-        return fakeDataStore.getJourneyList();
+        return journeyService.all();
     }
 
     @GetMapping("/journeys/{id}")
     public Journey journey(@PathVariable int id){
-        return fakeDataStore.getJourney(id);
+        return journeyService.journey(id);
     }
 }
