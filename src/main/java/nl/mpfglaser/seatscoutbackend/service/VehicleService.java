@@ -1,26 +1,31 @@
 package nl.mpfglaser.seatscoutbackend.service;
 
+import io.ebean.DB;
 import nl.mpfglaser.seatscoutbackend.model.Vehicle;
-import nl.mpfglaser.seatscoutbackend.repository.FakeDataStore;
 
 import java.util.List;
 
 public class VehicleService {
-    FakeDataStore fakeDataStore = new FakeDataStore();
 
-    public List<Vehicle> all() {
-        return fakeDataStore.getAllVehicles();
+    public List<Vehicle> getAll() {
+        return DB.find(Vehicle.class).findList();
     }
 
-    public Vehicle vehicle(String name) {
-        return fakeDataStore.getVehicle(name);
+    public Vehicle getById(int id) {
+        return DB.find(Vehicle.class).where().eq("id", id).findOne();
     }
 
-    public Vehicle newVehicle(Vehicle newVehicle) {
-        return fakeDataStore.addVehicle(newVehicle);
+    public Vehicle getByTypeName(String type_name){
+        return DB.find(Vehicle.class).where().eq("type_name", type_name).findOne();
     }
 
-    public Vehicle updateVehicle(Vehicle updateVehicle) {
-        return fakeDataStore.updateVehicle(updateVehicle);
+    public Vehicle create(Vehicle newVehicle) {
+        DB.save(newVehicle);
+        return DB.find(Vehicle.class).where().eq("id", newVehicle.getId()).findOne();
+    }
+
+    public Vehicle update(Vehicle updateVehicle) {
+        DB.update(updateVehicle);
+        return DB.find(Vehicle.class).where().eq("id", updateVehicle.getId()).findOne();
     }
 }
