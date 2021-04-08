@@ -1,12 +1,31 @@
 package nl.mpfglaser.seatscoutbackend.model;
 
-public class Location {
-    private String name;
-    private String description;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public Location(String name, String description) {
+@Entity
+@Table(name = "locations")
+public class Location {
+    @Id
+    @Column(name = "id")
+    private final int id;
+
+    @Column(name = "name")
+    private final String name;
+
+    @Column(name = "description")
+    private final String description;
+
+    public Location(int id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getName() {
