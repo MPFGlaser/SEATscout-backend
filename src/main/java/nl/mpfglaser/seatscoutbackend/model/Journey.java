@@ -1,14 +1,25 @@
 package nl.mpfglaser.seatscoutbackend.model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "journeys")
 public class Journey {
+    @Id
+    @Column(name = "id")
     private int id;
 
-    private Stop[] stops;
+    @OneToMany(mappedBy = "journey", fetch = FetchType.EAGER)
+    private List<Stop> stops;
 
+    @Column(name = "description_short")
     private String shortDescription;
+
+    @Column(name = "description_long")
     private String longDescription;
 
-    public Journey(int id, Stop[] stops, String shortDescription, String longDescription) {
+    public Journey(int id, List<Stop> stops, String shortDescription, String longDescription) {
         this.id = id;
         this.stops = stops;
         this.shortDescription = shortDescription;
@@ -27,11 +38,11 @@ public class Journey {
         return this.longDescription;
     }
 
-    public void setStops(Stop[] stops){
+    public void setStops(List<Stop> stops){
         this.stops = stops;
     }
 
-    public Stop[] getStops(){
+    public List<Stop> getStops(){
         return this.stops;
     }
 }

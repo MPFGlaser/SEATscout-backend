@@ -1,18 +1,16 @@
 package nl.mpfglaser.seatscoutbackend.service;
 
+import io.ebean.DB;
 import nl.mpfglaser.seatscoutbackend.model.Journey;
-import nl.mpfglaser.seatscoutbackend.repository.FakeDataStore;
-
 import java.util.List;
 
 public class JourneyService {
-    FakeDataStore fakeDataStore = new FakeDataStore();
 
     public List<Journey> all(){
-        return fakeDataStore.getJourneyList();
+        return DB.find(Journey.class).findList();
     }
 
     public Journey journey(int id){
-        return fakeDataStore.getJourney(id);
+        return DB.find(Journey.class).where().eq("id", id).findOne();
     }
 }
