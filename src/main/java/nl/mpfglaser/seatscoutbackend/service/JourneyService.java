@@ -1,16 +1,18 @@
 package nl.mpfglaser.seatscoutbackend.service;
 
-import io.ebean.DB;
 import nl.mpfglaser.seatscoutbackend.model.Journey;
+import nl.mpfglaser.seatscoutbackend.repository.JourneyRepository;
+
 import java.util.List;
 
 public class JourneyService {
+    JourneyRepository journeyRepository = new JourneyRepository();
 
     public List<Journey> all(){
-        return DB.find(Journey.class).findList();
+        return journeyRepository.all();
     }
 
     public Journey journey(int id){
-        return DB.find(Journey.class).where().eq("id", id).findOne();
+        return journeyRepository.journey(id);
     }
 }
