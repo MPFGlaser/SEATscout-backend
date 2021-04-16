@@ -1,6 +1,7 @@
 package nl.mpfglaser.seatscoutbackend.controllers;
 
 import nl.mpfglaser.seatscoutbackend.model.Vehicle;
+import nl.mpfglaser.seatscoutbackend.model.dto.VehicleDTO;
 import nl.mpfglaser.seatscoutbackend.service.VehicleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,18 +24,18 @@ public class VehicleController {
         return vehicleService.getById(id);
     }
 
-    @GetMapping("/type_name/{type_name}")
-    public ResponseEntity<Vehicle> vehicle(@PathVariable String type_name) {
-        return vehicleService.getByTypeName(type_name);
+    @GetMapping("/type_name/{typeName}")
+    public ResponseEntity<Vehicle> vehicle(@PathVariable String typeName) {
+        return vehicleService.getByTypeName(typeName);
     }
 
     @PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Vehicle> newVehicle(@RequestBody Vehicle newVehicle) {
+    public ResponseEntity<Vehicle> newVehicle(@RequestBody VehicleDTO newVehicle) {
         return vehicleService.create(newVehicle);
     }
 
     @PutMapping(path = "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Vehicle> updateVehicle(@RequestBody Vehicle updateVehicle) {
+    public ResponseEntity<Vehicle> updateVehicle(@RequestBody VehicleDTO updateVehicle) {
         return vehicleService.update(updateVehicle);
     }
 }

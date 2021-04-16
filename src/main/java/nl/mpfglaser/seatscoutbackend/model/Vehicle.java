@@ -13,14 +13,14 @@ public class Vehicle {
     private final int id;
 
     @Column(name = "type_name")
-    private String type_name;
+    private String typeName;
 
     @Column(name = "capacity")
     private int capacity;
 
     public Vehicle(int id, String typeName, int capacity) {
         this.id = id;
-        this.type_name = typeName;
+        this.typeName = typeName;
         this.capacity = capacity;
     }
 
@@ -28,13 +28,13 @@ public class Vehicle {
         return this.id;
     }
 
-    public String getType_name() {
-        return this.type_name;
+    public String getTypeName() {
+        return this.typeName;
     }
 
-    public void setType_name(String name) {
+    public void setTypeName(String name) {
         if (!name.isBlank()) {
-            this.type_name = name;
+            this.typeName = name;
         }
     }
 
