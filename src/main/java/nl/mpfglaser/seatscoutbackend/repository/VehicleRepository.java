@@ -14,8 +14,8 @@ public class VehicleRepository {
         return DB.find(Vehicle.class).where().eq("id", id).findOne();
     }
 
-    public Vehicle getByTypeName(String type_name) {
-        return DB.find(Vehicle.class).where().eq("type_name", type_name).findOne();
+    public Vehicle getByTypeName(String typeName) {
+        return DB.find(Vehicle.class).where().eq("type_name", typeName).findOne();
     }
 
     public Vehicle create(Vehicle newVehicle) {

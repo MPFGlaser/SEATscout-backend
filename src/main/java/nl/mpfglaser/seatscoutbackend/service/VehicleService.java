@@ -26,8 +26,8 @@ public class VehicleService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<Vehicle> getByTypeName(String type_name) {
-        Vehicle output = vehicleRepository.getByTypeName(type_name);
+    public ResponseEntity<Vehicle> getByTypeName(String typeName) {
+        Vehicle output = vehicleRepository.getByTypeName(typeName);
         if (output != null) {
             return new ResponseEntity<>(output, HttpStatus.OK);
         }

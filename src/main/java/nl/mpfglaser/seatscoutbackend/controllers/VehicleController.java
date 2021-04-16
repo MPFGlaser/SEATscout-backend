@@ -24,8 +24,8 @@ public class VehicleController {
     }
 
     @GetMapping("/type_name/{type_name}")
-    public ResponseEntity<Vehicle> vehicle(@PathVariable String type_name) {
-        return vehicleService.getByTypeName(type_name);
+    public ResponseEntity<Vehicle> vehicle(@PathVariable String typeName) {
+        return vehicleService.getByTypeName(typeName);
     }
 
     @PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
