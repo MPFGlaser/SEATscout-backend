@@ -1,33 +1,41 @@
 package nl.mpfglaser.seatscoutbackend.controllers;
 
 import nl.mpfglaser.seatscoutbackend.model.Vehicle;
-import nl.mpfglaser.seatscoutbackend.repository.FakeDataStore;
+import nl.mpfglaser.seatscoutbackend.model.dto.VehicleDTO;
+import nl.mpfglaser.seatscoutbackend.service.VehicleService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin()
 @RestController
+@RequestMapping("/api/vehicles")
 public class VehicleController {
-    FakeDataStore fakeDataStore = new FakeDataStore();
+    VehicleService vehicleService = new VehicleService();
 
-    @GetMapping("/vehicles")
-    public List<Vehicle> all() {
-        return fakeDataStore.getAllVehicles();
+    @GetMapping("/all")
+    public ResponseEntity<List<Vehicle>> all() {
+        return vehicleService.getAll();
     }
 
-    @GetMapping("/vehicles/{name}")
-    public Vehicle vehicle(@PathVariable String name) {
-        return fakeDataStore.getVehicle(name);
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Vehicle> vehicle(@PathVariable int id) {
+        return vehicleService.getById(id);
     }
 
-    @PostMapping(path = "/vehicles", consumes = "application/json", produces = "application/json")
-    public Vehicle newVehicle(@RequestBody Vehicle newVehicle) {
-        return fakeDataStore.addVehicle(newVehicle);
+    @GetMapping("/type_name/{typeName}")
+    public ResponseEntity<Vehicle> vehicle(@PathVariable String typeName) {
+        return vehicleService.getByTypeName(typeName);
     }
 
-    @PutMapping(path = "/vehicles", consumes = "application/json", produces = "application/json")
-    public Vehicle updateVehicle(@RequestBody Vehicle updateVehicle) {
-        return fakeDataStore.updateVehicle(updateVehicle);
+    @PostMapping(path = "/new", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Vehicle> newVehicle(@RequestBody VehicleDTO newVehicle) {
+        return vehicleService.create(newVehicle);
+    }
+
+    @PutMapping(path = "/update", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Vehicle> updateVehicle(@RequestBody VehicleDTO updateVehicle) {
+        return vehicleService.update(updateVehicle);
     }
 }
